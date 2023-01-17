@@ -95,11 +95,9 @@ test('/items post route', async () => {
 
 test('/items delete route', async () => {
     let res = await request(app).delete('/items/popsicle')
-    expect(res.statusCode).toBe(401)
+    expect(res.statusCode).toBe(200)
+    console.log()
     expect(res.body).toEqual({
-        "error": {
-            "msg": "no item found",
-            "status": 401
-        }
+        "message": "deleted"
     })
 })

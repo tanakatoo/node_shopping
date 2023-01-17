@@ -56,12 +56,10 @@ router.delete('/:name', (req, res, next) => {
     // returns {message: “Deleted”}
     const name = req.params.name
     const found = items.findIndex(n => n.name == name)
-
-    if (found) {
-        console.log(found)
+    console.log(found)
+    if (found === 0) {
         items.splice(found, 1)
-        console.log(items)
-        res.json({ message: "deleted" })
+        return res.json({ message: "deleted" })
     } else {
         const e = new ExpressError('no item found', 401)
         next(e)
