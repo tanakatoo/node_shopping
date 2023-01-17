@@ -3,8 +3,8 @@ const router = new express.Router()
 const ExpressError = require('./ExpressError')
 let items = require('./fakeDb')
 
-items.push({ name: "popsicle", price: 1.45 })
-items.push({ name: "kale", price: 2.99 })
+// items.push({ name: "popsicle", price: 1.45 })
+// items.push({ name: "kale", price: 2.99 })
 // each item {key:price}
 router.get('/', (req, res) => {
     // return [{“name”: “popsicle”, “price”: 1.45}, {“name”:”cheerios”, “price”: 3.40}]
@@ -34,7 +34,7 @@ router.get('/:name', (req, res, next) => {
     }
 })
 
-router.patch('/:name', (req, res) => {
+router.patch('/:name', (req, res, next) => {
     // returns and gets {“name”:”new popsicle”, “price”: 2.45} => {“updated”: {“name”: “new popsicle”, “price”: 2.45}}
     const name = req.params.name
     const newName = req.body.name
@@ -52,7 +52,7 @@ router.patch('/:name', (req, res) => {
     }
 })
 
-router.delete('/:name', (req, res) => {
+router.delete('/:name', (req, res, next) => {
     // returns {message: “Deleted”}
     const name = req.params.name
     const found = items.findIndex(n => n.name == name)
